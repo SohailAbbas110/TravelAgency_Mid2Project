@@ -1,0 +1,61 @@
+﻿@model IEnumerable<City.Models.CityModel>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+
+    @using (Html.BeginForm())
+    {
+<p>
+    City: @Html.TextBox("SearchString") <br />
+    <input type="submit" value="Filter" />
+     </p>}
+</p>
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CityName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VisitDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Country)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Fare)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CityName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.VisitDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Country)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Fare)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                </td>
+            </tr>
+        }
+
+    </table>
